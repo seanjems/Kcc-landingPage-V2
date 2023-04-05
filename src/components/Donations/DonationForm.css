@@ -1,0 +1,57 @@
+@media (min-width: 576px) {
+  .donation-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  .donation-item .mantine-text-input {
+    flex: 1;
+    margin-right: 1rem;
+  }
+
+  .donation-item .mantine-select {
+    flex: 1;
+    margin-right: 1rem;
+  }
+
+  .donation-item .mantine-pill {
+    flex: 0;
+    margin-left: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .donation-item {
+      flex-wrap: wrap;
+    }
+
+    .donation-item .mantine-text-input {
+      flex: 1 0 100%;
+      margin-bottom: 1rem;
+      margin-right: 0;
+    }
+
+    .donation-item .mantine-select {
+      flex: 1 0 100%;
+      margin-right: 0;
+    }
+
+    .donation-item .mantine-pill {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .donation-item .mantine-text-input {
+      font-size: 0.875rem;
+    }
+
+    .donation-item .mantine-select {
+      font-size: 0.875rem;
+    }
+
+    .donation-item .mantine-pill {
+      font-size: 0.875rem;
+    }
+  }
+}
