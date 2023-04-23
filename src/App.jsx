@@ -11,6 +11,9 @@ import DonationForm from "./components/Donations/DonationForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import BlogsSingle from "./Pages/Blogs/BlogsSingle";
 import BlogsMany from "./Pages/Blogs/BlogsMany";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import OffertoryPage from "./Pages/Offertory/OffertoryPage";
 
 const Home = () => (
   <>
@@ -19,8 +22,6 @@ const Home = () => (
     <Work />
     <Portfolio />
     <People />
-    <Footer />
-    <DonationForm />
   </>
 );
 
@@ -32,7 +33,8 @@ const App = () => {
 
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/articles" element={<BlogsMany />} />
+          <Route path="/articles" exact element={<BlogsMany />} />
+          <Route path="/donation" exact element={<OffertoryPage />} />
           <Route path="/articles/:id" element={<BlogsSingle />} />
           <Route
             path="*"
@@ -43,6 +45,7 @@ const App = () => {
             }
           />
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

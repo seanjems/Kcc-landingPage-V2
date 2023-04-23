@@ -3,12 +3,19 @@ import { TextInput, Button, Select } from "@mantine/core";
 import { IconPlus } from "@tabler/icons";
 import "./DonationForm.css";
 import css from "./../Footer/Footer.module.scss";
+import { IconX } from "@tabler/icons";
+import data from "./OfferToryData";
+import CustomSelect from "./CustomeSelect";
 
 const categories = ["Tithes", "Offerings", "Missions", "Building Fund"];
 
 function DonationForm() {
   const [total, setTotal] = useState(0);
-  const [donations, setDonations] = useState([{ amount: 0, category: "" }]);
+  const [uniqueCounter, setUniqueCounter] = useState(1);
+  const [currency, setCurrency] = useState("UGX");
+  const [donations, setDonations] = useState([
+    { amount: 0, category: "", id: uniqueCounter },
+  ]);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -34,32 +41,50 @@ function DonationForm() {
   };
 
   return (
-    <div className={`paddings ${css.wrapper}`}>
-      {donations.map((donation, index) => (
-        <DonationItem
-          key={index}
-          donation={donation}
-          onDonate={(amount) => handleDonate(index, amount, donation.category)}
+    <div className={`paddings outer-coainer-main ${css.wrapper}`}>
+      <div className="outer-container ">
+        <div className="d-flex justify-content-between m-2">
+          <span>Give</span>
+          <select onChange={(e) => setCurrency(e.target.value)}>
+            <option value="UGX" default>
+              UGX
+            </option>
+            <option value="USD">USD</option>
+          </select>
+        </div>
+        {donations.map((donation, index) => (
+          <DonationItem
+            key={index}
+            donation={donation}
+            onDonate={(amount) =>
+              handleDonate(index, amount, donation.category)
+            }
+          />
+        ))}
+        <br />
+        <div className="total-section ">
+          <div>
+            Total: {currency} {total.toLocaleString("en-US")}
+          </div>
+          <span className="btn-add-donation" onClick={handleAddDonation}>
+            <IconPlus size="1rem" /> <span>Add Donation</span>
+          </span>
+        </div>
+        <br />
+        <br />
+        <TextInput
+          label="Name"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
         />
-      ))}
-      <div className="total-section">
-        <Button onClick={handleAddDonation}>
-          <IconPlus /> Add Donation
-        </Button>
-        <div>Total: ${total.toFixed(2)}</div>
-      </div>
-      <TextInput
-        label="Name"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-      />
-      <TextInput
-        label="Email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-      <div className="submit-section">
-        <Button onClick={handleSubmit}>Submit</Button>
+        <TextInput
+          label="Email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <div className="submit-section mt-2">
+          <Button onClick={handleSubmit}>Submit</Button>
+        </div>
       </div>
     </div>
   );
@@ -68,6 +93,7 @@ function DonationForm() {
 function DonationItem({ donation, onDonate }) {
   const [amount, setAmount] = useState(donation.amount);
   const [category, setCategory] = useState(donation.category);
+  const [uniqueCounter, setUniqueCounter] = useState(donation.uniqueCounter);
 
   const handleDonate = () => {
     if (amount > 0 && category !== "") {
@@ -78,23 +104,27 @@ function DonationItem({ donation, onDonate }) {
   };
 
   return (
-    <div className="donation-item">
-      <TextInput
-        type="number"
-        label="Amount"
-        value={amount}
-        onChange={(event) => setAmount(parseFloat(event.target.value))}
-      />
-      <Select
+    <>
+      <div className="donation-item">
+        <TextInput
+          type="number"
+          value={amount}
+          onChange={(event) => setAmount(parseFloat(event.target.value))}
+        />
+        {/* <Select
         data={categories}
-        label="Category"
         placeholder="Select a category"
         value={category}
-        onChange={(event) => setCategory(event.target.value)}
+        onChange={(event) => console.log(event)}
         style={{ minWidth: "8rem" }}
-      />
-      <Button onClick={handleDonate}>Donate</Button>
-    </div>
+      /> */}
+        <CustomSelect />
+        <div className="m-2" style={{ cursor: "pointer" }}>
+          <IconX color="hsl(1, 83%, 62%)" />
+        </div>
+        {/* <Button onClick={handleDonate}>Donate</Button> */}
+      </div>
+    </>
   );
 }
 

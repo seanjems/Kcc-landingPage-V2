@@ -24,6 +24,15 @@
   color: white;
 }
 
+.bg-featured-blog {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 15rem;
+}
+
 .App-link {
   color: #61dafb;
 }

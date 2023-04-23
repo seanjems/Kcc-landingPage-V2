@@ -8,7 +8,36 @@ import {
   textVariant,
   textVariant2,
 } from "../../utils/motion";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 const Portfolio = () => {
+  const [fetchedList, setFetchedList] = useState();
+  useEffect(() => {
+    fetchThree();
+  }, []);
+  const fetchThree = async () => {
+    return fetch(
+      // `${"https://api.kampalacentraladventist.org/"}api/YouTubeChannel/GetYoutubeVideos?page=1&pageSize=5`,
+      `${"https://localhost:7204"}/api/Articles?pageNumber=${1}&pageSize=${5}`,
+      {
+        method: "GET",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("🚀 ~ file: Portfolio.jsx:34 ~ .then ~ data:", data);
+
+        setFetchedList(data);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {});
+  };
+  const navigate = useNavigate();
   return (
     <motion.section
       variants={staggerChildren}
@@ -43,33 +72,40 @@ const Portfolio = () => {
               .
             </p>
           </div>
-          <span className="secondaryText">More Articles</span>
+          <span
+            className="secondaryText"
+            onClick={() => navigate("../articles")}
+          >
+            More Articles
+          </span>
         </motion.div>
 
         <div className={`flexCenter ${css.showCase}`}>
-          <motion.div variants={fadeIn("up", "tween", 0.5, 0.6)}>
-            <img src="./showCase1.png" alt="project" />
-            <div className={css.bio}>
-              <span>Dangers of harmless fun</span>
-              <span>by Pr Kiggundu Bennon</span>
-            </div>
-          </motion.div>
-          <motion.div variants={fadeIn("up", "tween", 0.7, 0.6)}>
-            <img src="./showCase2.png" alt="project" />
-            <div className={css.bio}>
-              <span>
-                Delicious Vegeterian meals you can prepare at home easily
-              </span>
-              <span>by Sis Faridah Nakato</span>
-            </div>
-          </motion.div>
-          <motion.div variants={fadeIn("up", "tween", 0.9, 0.6)}>
-            <img src="./showCase3.png" alt="project" />
-            <div className={css.bio}>
-              <span>How to overcome Social media addiction</span>
-              <span>by Eld Kevin Muheirwe</span>
-            </div>
-          </motion.div>
+          {fetchedList &&
+            fetchedList.slice(0, 3)?.map((article, key) => (
+              <>
+                <motion.div
+                  key={key}
+                  variants={fadeIn("up", "tween", 0.5, 0.6)}
+                  onClick={() => navigate(`../articles/${article.id}`)}
+                >
+                  <img
+                    style={{
+                      width: "100%",
+                      height: "20rem",
+                      objectFit: "cover",
+                      objectPosition: "center",
+                    }}
+                    src={article.coverImage}
+                    alt="project"
+                  />
+                  <div className={css.bio}>
+                    <span>{article.articleTitle}</span>
+                    <span>by {article.authorName}</span>
+                  </div>
+                </motion.div>
+              </>
+            ))}
         </div>
       </div>
     </motion.section>

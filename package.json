@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.6",
+    "@mantine/carousel": "^6.0.7",
     "@mantine/core": "^6.0.4",
     "@mantine/hooks": "^6.0.4",
     "@tabler/icons": "^1.119.0",
@@ -11,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "bootstrap": "^5.2.3",
+    "embla-carousel-react": "^7.1.0",
     "framer-motion": "^8.0.2",
     "fslightbox-react": "^1.7.2",
     "jquery": "^3.6.4",

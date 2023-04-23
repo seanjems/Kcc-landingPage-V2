@@ -15,8 +15,8 @@ const SocialMedia = () => {
 
   async function fetchTopPosts() {
     return fetch(
-      `${"https://api.kampalacentraladventist.org/"}api/Posts?page=${1}&userProfileId=&userName=`,
-      // `${"https://localhost:7204/"}api/Posts?page=${1}&userProfileId=&userName=`,
+      // `${"https://api.kampalacentraladventist.org/"}api/Posts?page=${1}&userProfileId=&userName=`,
+      `${"https://localhost:7204/"}api/Posts?page=${1}&userProfileId=&userName=`,
       {
         method: "GET",
         headers: {
@@ -55,7 +55,8 @@ const SocialMedia = () => {
         <span>stories from</span>
         <span className="stroke-text"> your church</span>
       </div> */}
-      {fetchedList && (
+
+      {fetchedList ? (
         <div className="trendingCards">
           {fetchedList.map((post, idx) => (
             <div className="postsCard" key={idx}>
@@ -90,6 +91,8 @@ const SocialMedia = () => {
             </div>
           ))}
         </div>
+      ) : (
+        ""
       )}
     </div>
   );

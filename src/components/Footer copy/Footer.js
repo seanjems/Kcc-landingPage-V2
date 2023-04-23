@@ -1,9 +1,9 @@
 import React from "react";
-import { footerVariants, staggerChildren } from "../../utils/motion";
-import css from "./Footer.module.scss";
-import { motion } from "framer-motion";
 import "./Footer.css";
-const Footer = () => {
+import LogoClean from "../../assets/SDA-Logo.png";
+// import { Link } from "react-router-dom";
+
+function Footer() {
   return (
     <div className="footer-container" id="more">
       <section className="footer-subscription">
@@ -110,7 +110,7 @@ const Footer = () => {
           <div className="footer-logo">
             <div className="social-logo">
               SDA KCC
-              <img src="logo.png" alt="" />
+              <img src={LogoClean} alt="" />
             </div>
           </div>
           <small className="website-rights">SDA KCC © 2022</small>
@@ -155,6 +155,6 @@ const Footer = () => {
       </section>
     </div>
   );
-};
+}
 
 export default Footer;
