@@ -1,33 +1,9 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import { Group, Avatar, Text, Select } from "@mantine/core";
+import OffertoryData from "./OfferToryData";
+import { useEffect } from "react";
 
-const data = [
-  {
-    image: "https://img.icons8.com/clouds/256/000000/futurama-bender.png",
-    label: "Bender Bending Rodríguez",
-    value: "Bender Bending Rodríguez",
-    description: "Fascinated with cooking",
-  },
-  {
-    image: "https://img.icons8.com/clouds/256/000000/futurama-mom.png",
-    label: "Carol Miller",
-    value: "Carol Miller",
-    description: "One of the richest people on Earth",
-  },
-  {
-    image: "https://img.icons8.com/clouds/256/000000/homer-simpson.png",
-    label: "Homer Simpson",
-    value: "Homer Simpson",
-    description: "Overweight, lazy, and often ignorant",
-  },
-  {
-    image: "https://img.icons8.com/clouds/256/000000/spongebob-squarepants.png",
-    label: "Spongebob Squarepants",
-    value: "Spongebob Squarepants",
-    description: "Not just a sponge",
-  },
-];
-
+const data = OffertoryData;
 const SelectItem = forwardRef(function Item(props, ref) {
   const { image, label, description, ...others } = props;
 
@@ -47,15 +23,45 @@ const SelectItem = forwardRef(function Item(props, ref) {
   );
 });
 
-function CustomSelect() {
+function CustomSelect({ setCategoryState, donationsList, donation }) {
+  const [updatedList, setUpdatedList] = useState(data);
+  const [category, setCategory] = useState(donation?.category);
+  // console.log(
+  //   "🚀 ~ file: CustomeSelect.jsx:26 ~ CustomSelect ~ donationsList:",
+  //   donationsList
+  // );
+
+  const handleSelectionList = () => {
+    const filteredList = data.map((item1) => {
+      if (donationsList.find((item2) => item2.category === item1.value)) {
+        return {
+          ...item1,
+          disabled: true,
+        };
+      }
+      return { ...item1, disabled: false };
+    });
+    setUpdatedList(filteredList);
+  };
+  useEffect(() => {
+    handleSelectionList();
+  }, [donationsList]);
+  const handleChange = (value) => {
+    setCategoryState(value);
+    setCategory(value);
+  };
   return (
     <Select
-      placeholder="Pick/Search Item"
+      placeholder="Select Category for your Contribution"
       itemComponent={SelectItem}
-      data={data}
+      data={updatedList}
       searchable
+      value={category}
       maxDropdownHeight={400}
-      nothingFound="Nobody here"
+      nothingFound="Category not found"
+      onChange={(value) => {
+        handleChange(value);
+      }}
       filter={(value, item) =>
         item.label.toLowerCase().includes(value.toLowerCase().trim()) ||
         item.description.toLowerCase().includes(value.toLowerCase().trim())

@@ -1,3 +1,4 @@
+/* stepp zilla styling */
 @media (min-width: 576px) {
   .donation-item {
     display: flex;
@@ -6,6 +7,34 @@
     gap: 1rem;
   }
 
+  .momoButton {
+    border: 1px solid grey;
+    border-radius: 1rem;
+    padding: 0px;
+    overflow: hidden;
+  }
+  .momoButton > span {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: large;
+  }
+  .mobileMoneySection {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .paypal {
+    border: 1px solid grey;
+    border-radius: 1rem;
+    padding: 0px;
+    overflow: hidden;
+    height: 100%;
+  }
+  .paypal > span {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    font-size: large;
+  }
   .donation-item .mantine-text-input {
     flex: 1;
     margin-right: 1rem;
@@ -59,6 +88,10 @@
     flex: 0;
     margin-left: 1rem;
   }
+  .totalsSection {
+    font-size: large;
+    font-weight: bold;
+  }
 
   @media (max-width: 768px) {
     .donation-item {
@@ -80,7 +113,9 @@
       margin-left: 0;
     }
   }
-
+  .placeholder-gray::placeholder {
+    color: #ac1212;
+  }
   @media (max-width: 576px) {
     .donation-item .mantine-text-input {
       font-size: 0.875rem;

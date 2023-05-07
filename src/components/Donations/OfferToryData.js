@@ -13,7 +13,7 @@ import communication from "../../assets/images/communication.jpg";
 import others from "../../assets/images/others.jpg";
 import lcb from "../../assets/images/localchurchbudget.jpg";
 
-const data = [
+const OffertoryData = [
   // {
   //   id: 13,
   //   image: lugogo,
@@ -28,96 +28,94 @@ const data = [
   //   desc: "Imperial Royale Show - AOC eTicket",
   //   price: 0,
   // },
-  {
-    image: "https://img.icons8.com/clouds/256/000000/futurama-bender.png",
-    label: "Bender Bending Rodríguez",
-    value: "Bender Bending Rodríguez",
-    description: "Fascinated with cooking",
-  },
+
   {
     id: 1,
     image: Donation,
-    label: "Donation",
-    description: "",
+    label: "Donation/LCB",
+    value: "Donation/LCB",
+    description:
+      "General Contribution. Will be considered as Local church budget",
     price: 0,
   },
   {
     id: 2,
     image: tithe,
     label: "Tithe (10%)",
-    description: "",
+    value: "Tithe",
+    description:
+      "The tithe is the main source of funding for the total proclamation of the gospel to all the world",
     price: 0,
   },
   {
     id: 3,
     image: thanksgiving,
     label: "Thanks Giving",
-    description: "",
+    value: "Thanks Giving",
+    description:
+      "Thanks giving means thanks-living. A grateful person will be a happier, healthier, and holier person.",
     price: 0,
   },
   {
     id: 4,
     image: construction,
     label: "Church Construction",
-    description: "",
+    value: "Church Construction",
+    description:
+      "Contribute towards the construction of the new SDA Tower for Kampala Central",
     price: 0,
   },
   {
     id: 5,
     image: lunch,
     label: "Lunch",
-    description: "",
+    value: "Lunch",
+    description:
+      "Sabbath Lunch contributions. This is based on the church Family.",
     price: 0,
   },
+
   {
     id: 6,
-    image: Welfare,
-    label: "Welfare",
-    description: "",
+    image: communication,
+    label: "Communication Department",
+    value: "Communication Department",
+    description:
+      "Support media ministry and purchase of Livestreaming equipment and gear.",
     price: 0,
   },
   {
     id: 7,
-    image: communication,
-    label: "Communication Department",
-    description: "",
+    image: campexpenses,
+    label: "Campmeeting Expenses",
+    value: "Campmeeting Expenses",
+    description: "Yearly Campmeeting Epenses",
     price: 0,
   },
   {
     id: 8,
-    image: campexpenses,
-    label: "Campmeeting Expenses",
-    description: "",
+    image: campoffering,
+    label: "Campmeeting Offering",
+    value: "Campmeeting Offering",
+    description: "Yearly Campmeeting offering contributions",
     price: 0,
   },
+
   {
     id: 9,
-    image: campoffering,
-    label: "Campmeeting Expenses",
-    description: "",
+    image: kirekahospital,
+    label: "Kireka Adventist Hospital",
+    value: "Kireka Adventist Hospital",
+    description: "Contruction of the Adventist hospital at Kireka Hill",
     price: 0,
   },
   {
     id: 10,
-    image: lcb,
-    label: "Local church Budget",
-    description: "",
-    price: 0,
-  },
-  {
-    id: 11,
-    image: kirekahospital,
-    label: "Kireka Adventist Hospital",
-    description: "",
-    price: 0,
-  },
-  {
-    id: 12,
     image: others,
     label: "Others",
-    description: "",
+    description: "Contribute for any other cause and Specify the reason.",
     price: 0,
   },
 ];
 
-export default data;
+export default OffertoryData;

@@ -14,6 +14,9 @@ import BlogsMany from "./Pages/Blogs/BlogsMany";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import OffertoryPage from "./Pages/Offertory/OffertoryPage";
+import { ChakraProvider } from "@chakra-ui/react";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
+import "./index.scss";
 
 const Home = () => (
   <>
@@ -28,25 +31,36 @@ const Home = () => (
 const App = () => {
   return (
     <div className={`bgPrimary ${css.container}`}>
-      <Router>
-        <Header />
+      <ChakraProvider>
+        <PayPalScriptProvider
+          options={{
+            "client-id":
+              "AezVIu7szn3_vKJ_uQHbYn-sKA1ogFURTu7h0Q7BUexSj9SK-N8fhDaQlhijAJmhNr9ALqv6aDHdT3dT",
+            // "AUdkzIbIcndnIN_ER6KkG7Vqe8P9L3O_b-BqY6F1fca8TJ26XogY3PQbckoxp4siAMyJBS0as6WVhHAR",
+            currency: "USD",
+          }}
+        >
+          <Router>
+            <Header />
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/articles" exact element={<BlogsMany />} />
-          <Route path="/donation" exact element={<OffertoryPage />} />
-          <Route path="/articles/:id" element={<BlogsSingle />} />
-          <Route
-            path="*"
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>There's nothing here! Please check the url</p>
-              </main>
-            }
-          />
-        </Routes>
-        <Footer />
-      </Router>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/articles" exact element={<BlogsMany />} />
+              <Route path="/donation" exact element={<OffertoryPage />} />
+              <Route path="/articles/:id" element={<BlogsSingle />} />
+              <Route
+                path="*"
+                element={
+                  <main style={{ padding: "1rem" }}>
+                    <p>There's nothing here! Please check the url</p>
+                  </main>
+                }
+              />
+            </Routes>
+            <Footer />
+          </Router>
+        </PayPalScriptProvider>
+      </ChakraProvider>
     </div>
   );
 };
